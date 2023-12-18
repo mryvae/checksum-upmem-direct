@@ -30,7 +30,7 @@ void populate_mram(XDPI interface) {
   gettimeofday(&begin, NULL);
   SendToPIM(interface, buffers, "buffer", 0, BUFFER_SIZE, 0);
   gettimeofday(&end, NULL);
-  printf("SendToPIM: %d ns\n", (end.tv_sec * 1000000 + end.tv_usec) - (begin.tv_sec * 1000000 + begin.tv_usec));
+  printf("SendToPIM: %d us\n", (end.tv_sec * 1000000 + end.tv_usec) - (begin.tv_sec * 1000000 + begin.tv_usec));
 }
 
 int main() {
@@ -52,7 +52,7 @@ int main() {
   gettimeofday(&begin, NULL);
   ReceiveFromPIM(interface, buffers, "checksum64", 0, 8, 0);
   gettimeofday(&end, NULL);
-  printf("ReceiveFromPIM: %d ns\n", (end.tv_sec * 1000000 + end.tv_usec) - (begin.tv_sec * 1000000 + begin.tv_usec));
+  printf("ReceiveFromPIM: %d us\n", (end.tv_sec * 1000000 + end.tv_usec) - (begin.tv_sec * 1000000 + begin.tv_usec));
   checksum32 = (uint32_t)(checksum[0]);
   printf("0x%08x\n",checksum32);
   deallocate(interface);
